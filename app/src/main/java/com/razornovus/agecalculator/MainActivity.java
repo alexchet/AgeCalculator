@@ -7,6 +7,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.main_layout).requestFocus();
 
         setEventListeners();
+
+        //set current date as default for editToday
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("MMM dd, yyyy");
+        editToday.setText(df.format(c.getTime()));
     }
 
     private void setEventListeners() {
