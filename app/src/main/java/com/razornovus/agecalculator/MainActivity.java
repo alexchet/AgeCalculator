@@ -22,31 +22,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViewById(R.id.main_layout).requestFocus();
 
-        setClickEventListeners();
+        setEventListeners();
     }
 
-    private void setClickEventListeners() {
+    private void setEventListeners() {
         editToday = (EditText) findViewById(R.id.edit_today);
         editToday.setInputType(InputType.TYPE_NULL);
-        editToday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setDate toDate = new setDate(editToday);
-            }
-        });
+        setDate toDate = new setDate(editToday);
 
         editBirthday = (EditText) findViewById(R.id.edit_birthday);
         editBirthday.setInputType(InputType.TYPE_NULL);
-        editBirthday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setDate fromDate = new setDate(editBirthday);
-            }
-        });
-    }
-
-    public void onClick(View v) {
-        setDate fromDate = new setDate(editToday);
+        setDate fromDate = new setDate(editBirthday);
     }
 }
