@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Age Calculator</string>
+    <string name="edit_today">Todays Date</string>
+    <string name="edit_birthday">Date of Birth</string>
+</resources>
