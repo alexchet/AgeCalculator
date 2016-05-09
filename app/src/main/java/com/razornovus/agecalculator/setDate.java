@@ -13,14 +13,14 @@ import java.util.Locale;
 /**
  * Created by chetc on 08/05/2016.
  */
-public class setDate implements View.OnFocusChangeListener, DatePickerDialog.OnDateSetListener {
+public class setDate implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
     private EditText editText;
     private Calendar myCalendar;
 
-    public setDate(EditText editText, Context ctx){
+    public setDate(EditText editText){
         this.editText = editText;
-        this.editText.setOnFocusChangeListener(this);
+        this.editText.setOnClickListener(this);
         myCalendar = Calendar.getInstance();
     }
 
@@ -39,13 +39,11 @@ public class setDate implements View.OnFocusChangeListener, DatePickerDialog.OnD
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onClick(View v) {
         // TODO Auto-generated method stub
-        if(hasFocus){
-            new DatePickerDialog(v.getContext(), this, myCalendar
-                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-        }
+        new DatePickerDialog(v.getContext(), this, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
 }
