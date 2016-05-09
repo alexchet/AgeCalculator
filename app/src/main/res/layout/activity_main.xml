@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -35,4 +36,56 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate"
+        android:id="@+id/button_calculate"
+        android:layout_below="@+id/edit_birthday"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+
+
+    <!-- A CardView that contains a TextView -->
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        card_view:cardCornerRadius="4dp"
+        android:layout_below="@+id/button_calculate"
+        android:layout_marginTop="8dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <TextView
+            android:id="@+id/title_age"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/card_view"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Age"
+            android:padding="8dp"
+            android:contextClickable="false"
+            style="@style/Base.TextAppearance.AppCompat.Title" />
+        <TextView
+            android:id="@+id/info_age_year"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_age"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="0"
+            android:padding="8dp"
+            android:contextClickable="false"
+            style="@style/Base.TextAppearance.AppCompat.Title" />
+    </android.support.v7.widget.CardView>
+
+
+
 </RelativeLayout>
