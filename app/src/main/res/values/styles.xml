@@ -9,7 +9,7 @@
     </style>
     <style name="AppTheme.LargeInfo.TextView" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:textSize">100sp</item>
+        <item name="android:textSize">80sp</item>
         <item name="android:fontFamily">sans-serif-thin</item>
     </style>
 </resources>

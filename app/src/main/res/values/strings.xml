@@ -5,4 +5,9 @@
     <string name="button_calculate">Calculate</string>
     <string name="title_age">Age</string>
     <string name="info_age_year">0</string>
+    <string name="info_age_month">0</string>
+    <string name="info_age_day">0</string>
+    <string name="title_age_year">Years</string>
+    <string name="title_age_month">Months</string>
+    <string name="title_age_day">Days</string>
 </resources>

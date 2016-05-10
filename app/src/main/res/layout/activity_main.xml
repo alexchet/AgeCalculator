@@ -42,24 +42,23 @@
         android:text="@string/button_calculate"
         android:id="@+id/button_calculate"
         android:layout_below="@+id/edit_birthday"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        style="@style/Widget.AppCompat.Button.Colored"/>
+        android:layout_alignParentEnd="true" />
     <!-- A CardView that contains a TextView -->
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="170dp"
         card_view:cardCornerRadius="4dp"
         android:layout_below="@+id/button_calculate"
         android:layout_marginTop="8dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/button_calculate"
+        android:layout_alignEnd="@+id/button_calculate">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -74,13 +73,69 @@
                 android:padding="8dp"
                 android:singleLine="true"
                 style="@style/Base.TextAppearance.AppCompat.Title" />
-            <TextView
-                android:id="@+id/info_age_year"
-                android:layout_width="wrap_content"
+            <!--Horizontal layout for info text views-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/info_age_year"
-                android:padding="8dp"
-                style="@style/AppTheme.LargeInfo.TextView" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+                <TextView
+                    android:id="@+id/info_age_year"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/info_age_year"
+                    android:gravity="center_horizontal"
+                    style="@style/AppTheme.LargeInfo.TextView" />
+                <TextView
+                    android:id="@+id/info_age_month"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/info_age_month"
+                    android:gravity="center_horizontal"
+                    style="@style/AppTheme.LargeInfo.TextView" />
+                <TextView
+                    android:id="@+id/info_age_day"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/info_age_day"
+                    android:gravity="center_horizontal"
+                    style="@style/AppTheme.LargeInfo.TextView" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+                <TextView
+                    android:id="@+id/title_age_year"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_age_year"
+                    android:padding="8dp"
+                    android:gravity="center_horizontal" />
+                <TextView
+                    android:id="@+id/title_age_month"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_age_month"
+                    android:padding="8dp"
+                    android:gravity="center_horizontal" />
+                <TextView
+                    android:id="@+id/title_age_day"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_age_day"
+                    android:padding="8dp"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>
