@@ -2,4 +2,7 @@
     <string name="app_name">Age Calculator</string>
     <string name="edit_today">Todays Date</string>
     <string name="edit_birthday">Date of Birth</string>
+    <string name="button_calculate">Calculate</string>
+    <string name="title_age">Age</string>
+    <string name="info_age_year">0</string>
 </resources>
