@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     //UI References
     private EditText editToday;
     private EditText editBirthday;
+    private TextView infoYear;
+    private TextView infoMonth;
+    private TextView infoDay;
     private Button  buttonCalculate;
     private SimpleDateFormat df = new SimpleDateFormat("MMM dd, yyyy");
 
@@ -57,16 +60,22 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Date fromDate = df.parse(editBirthday.getText().toString());
                     Date toDate = df.parse(editToday.getText().toString());
+                    long milliseconds = getDiffMilliseconds(fromDate, toDate);
+                    Calendar c = Calendar.getInstance();
 
-                    TextView years = (TextView) findViewById(R.id.info_age_year);
-                    years.setText(Integer.toString(getDiffYears(fromDate, toDate)));
+                    c.setTimeInMillis(milliseconds);
+                    int mYear = c.get(Calendar.YEAR)-1970;
+                    int mMonth = c.get(Calendar.MONTH);
+                    int mDay = c.get(Calendar.DAY_OF_MONTH)-1;
 
-                    TextView month = (TextView) findViewById(R.id.info_age_month);
-                    month.setText(Integer.toString(getDiffMonth(fromDate, toDate)));
+                    infoYear = (TextView) findViewById(R.id.info_age_year);
+                    infoYear.setText(Integer.toString(mYear));
 
-                    TextView day = (TextView) findViewById(R.id.info_age_day);
-                    day.setText(Integer.toString(getDiffDay(fromDate, toDate)));
+                    infoMonth = (TextView) findViewById(R.id.info_age_month);
+                    infoMonth.setText(Integer.toString(mMonth));
 
+                    infoDay = (TextView) findViewById(R.id.info_age_day);
+                    infoDay.setText(Integer.toString(mDay));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -74,38 +83,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public static int getDiffYears(Date first, Date last) {
-        Calendar a = getCalendar(first);
-        Calendar b = getCalendar(last);
-        int diff = b.get(Calendar.YEAR) - a.get(Calendar.YEAR);
-        if (a.get(Calendar.MONTH) > b.get(Calendar.MONTH) ||
-                (a.get(Calendar.MONTH) == b.get(Calendar.MONTH) && a.get(Calendar.DATE) > b.get(Calendar.DATE))) {
-            diff--;
-        }
+    public static long getDiffMilliseconds(Date fromDate, Date toDate) {
+        long diff =  toDate.getTime() - fromDate.getTime();
         return diff;
-    }
-
-    public static int getDiffMonth(Date first, Date last) {
-        Calendar a = getCalendar(first);
-        Calendar b = getCalendar(last);
-        int diff = b.get(Calendar.MONTH) - a.get(Calendar.MONTH);
-        if (a.get(Calendar.DATE) > b.get(Calendar.DATE)) {
-            diff--;
-        }
-        return diff;
-    }
-
-    public static int getDiffDay(Date first, Date last) {
-        Calendar a = getCalendar(first);
-        Calendar b = getCalendar(last);
-        int diff = b.get(Calendar.DATE) - a.get(Calendar.DATE);
-
-        return diff;
-    }
-
-    public static Calendar getCalendar(Date date) {
-        Calendar cal = Calendar.getInstance(Locale.US);
-        cal.setTime(date);
-        return cal;
     }
 }

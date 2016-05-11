@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -42,17 +43,21 @@ public class setDate implements View.OnFocusChangeListener, View.OnClickListener
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         if(hasFocus){
-            new DatePickerDialog(v.getContext(), this, myCalendar
+            DatePickerDialog dialog = new DatePickerDialog(v.getContext(), this, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                    myCalendar.get(Calendar.DAY_OF_MONTH));
+            dialog.getDatePicker().setMaxDate(new Date().getTime());
+            dialog.show();
         }
     }
 
     @Override
     public void onClick(View v) {
-        new DatePickerDialog(v.getContext(), this, myCalendar
+        DatePickerDialog dialog = new DatePickerDialog(v.getContext(), this, myCalendar
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                myCalendar.get(Calendar.DAY_OF_MONTH));
+        dialog.getDatePicker().setMaxDate(new Date().getTime());
+        dialog.show();
     }
 
 }
