@@ -1,13 +1,20 @@
 package com.razornovus.agecalculator;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,12 +30,13 @@ public class MainActivity extends AppCompatActivity {
     private TextView infoYear;
     private TextView infoMonth;
     private TextView infoDay;
+    private TextView infoNextBirthdayMonth;
+    private TextView infoNextBirthdayDay;
     private Button  buttonCalculate;
     private SimpleDateFormat df = new SimpleDateFormat("MMM dd, yyyy");
 
-    private DatePickerDialog editTodayPickerDialog;
+    private static final int RESULT_SETTINGS = 1;
 
-    private SimpleDateFormat dateFormatter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
         //set current date as default for editToday
         Calendar c = Calendar.getInstance();
         editToday.setText(df.format(c.getTime()));
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        setContentView(R.layout.activity_main);
     }
 
     private void setEditEventListeners() {
@@ -76,11 +94,42 @@ public class MainActivity extends AppCompatActivity {
 
                     infoDay = (TextView) findViewById(R.id.info_age_day);
                     infoDay.setText(Integer.toString(mDay));
+
+
+                    long millisecondsNext = getDiffMilliseconds(toDate, fromDate);
+                    c.setTimeInMillis(millisecondsNext);
+                    int mNextMonth = c.get(Calendar.MONTH);
+                    int mNextDay = c.get(Calendar.DAY_OF_MONTH)-1;
+
+                    infoNextBirthdayMonth = (TextView) findViewById(R.id.info_next_birthday_month);
+                    infoNextBirthdayMonth.setText(Integer.toString(mNextMonth));
+
+                    infoNextBirthdayDay = (TextView) findViewById(R.id.info_next_birthday_day);
+                    infoNextBirthdayDay.setText(Integer.toString(mNextDay));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_settings:
+                Intent i = new Intent(this, SettingsActivity.class);
+                startActivityForResult(i, RESULT_SETTINGS);
+                break;
+
+        }
+
+        return true;
     }
 
     public static long getDiffMilliseconds(Date fromDate, Date toDate) {

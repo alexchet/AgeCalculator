@@ -37,7 +37,7 @@ public class setDate implements View.OnFocusChangeListener, View.OnClickListener
         myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
         editText.setText(sdformat.format(myCalendar.getTime()));
-
+        editText.clearFocus();
     }
 
     @Override
